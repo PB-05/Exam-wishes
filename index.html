@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exams Success</title>
+    <style>
+        /* General Body Style */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 200vh; /* To enable scrolling */
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #e1bee7, #d1c4e9, #c5cae9, #b3e5fc);
+            background-size: 300% 300%;
+            animation: backgroundShift 10s infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #d50000;
+            font-size: 3rem;
+            margin-top: 50px;
+            text-shadow: 2px 2px 10px rgba(213, 0, 0, 0.5);
+        }
+
+        /* Sparkles on the Sides */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            border-radius: 50%;
+            box-shadow: 0 0 10px gold;
+            animation: sparkleMove 3s infinite ease-in-out;
+        }
+
+        @keyframes sparkleMove {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(20px); opacity: 0.6; }
+        }
+
+        /* Pulsating Heart */
+        .heart {
+            margin: 50px auto;
+            width: 100px;
+            height: 90px;
+            position: relative;
+            background-color: #ff1744;
+            transform: rotate(-45deg);
+            animation: pulse 1.5s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #ff1744;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -50px; left: 0; }
+        .heart::after { left: 50px; top: 0; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.2) rotate(-45deg); }
+        }
+
+        /* Butterflies */
+        .butterfly {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e6/Butterfly_icon.svg');
+            background-size: cover;
+            animation: fly 5s infinite ease-in-out;
+        }
+
+        @keyframes fly {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .butterfly1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .butterfly2 { top: 40%; right: 20%; animation-delay: 1s; }
+        .butterfly3 { bottom: 30%; left: 15%; animation-delay: 2s; }
+        .butterfly4 { bottom: 10%; right: 5%; animation-delay: 3s; }
+
+        /* Popup Modal */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup h2 {
+            color: #4caf50;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .popup img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffeb3b;
+            animation: confettiFall 3s infinite ease-in-out;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-50px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .confetti1 { left: 20%; animation-delay: 0s; }
+        .confetti2 { left: 40%; animation-delay: 0.5s; }
+        .confetti3 { left: 60%; animation-delay: 1s; }
+        .confetti4 { left: 80%; animation-delay: 1.5s; }
+    </style>
+</head>
+<body>
+    <h1>We will all pass the exams with flying colours!</h1>
+
+    <!-- Pulsating Heart -->
+    <div class="heart"></div>
+
+    <!-- Sparkles -->
+    <div class="sparkle" style="top: 10%; left: 5%;"></div>
+    <div class="sparkle" style="top: 30%; right: 10%;"></div>
+    <div class="sparkle" style="bottom: 20%; left: 5%;"></div>
+    <div class="sparkle" style="bottom: 10%; right: 15%;"></div>
+
+    <!-- Butterflies -->
+    <div class="butterfly butterfly1"></div>
+    <div class="butterfly butterfly2"></div>
+    <div class="butterfly butterfly3"></div>
+    <div class="butterfly butterfly4"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <h2>Congratulations! 🎉</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Party_popper_emoji.svg" alt="Congratulations">
+        <p>You've passed!</p>
+        <div class="confetti confetti1"></div>
+        <div class="confetti confetti2"></div>
+        <div class="confetti confetti3"></div>
+        <div class="confetti confetti4"></div>
+    </div>
+
+    <script>
+        // Show the popup when scrolling to the bottom
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY + window.innerHeight;
+
+            if (scrollTop >= scrollHeight) {
+                document.getElementById('popup').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
